@@ -51,6 +51,7 @@ $userinfo=getUserDetail();
 					  @php
 					  $submenulist=getSideSubMenu($li->id);
 
+
 					  @endphp
 
 					  
@@ -87,11 +88,11 @@ $userinfo=getUserDetail();
 						@endphp
 
 					<li class="sidebar-item {{$isactive}}">
-						<a data-bs-target="#{{$li->modulename}}" data-bs-toggle="collapse" class="sidebar-link {{$collapsed}}" aria-expanded="{{$ariaexpanded}}">
+						<a data-bs-target="#{{preg_replace('/\s/', '', $li->modulename)}}" data-bs-toggle="collapse" class="sidebar-link {{$collapsed}}" aria-expanded="{{$ariaexpanded}}">
 							<i class="align-middle {{$li->icon}}" data-feather="layout"></i> <span class="align-middle">{{$li->modulename}}</span>
 						</a>
 						
-						<ul id="{{$li->modulename}}" class="sidebar-dropdown list-unstyled {{$iscollapse}}" data-bs-parent="#sidebar">
+						<ul id="{{preg_replace('/\s/', '', $li->modulename)}}" class="sidebar-dropdown list-unstyled {{$iscollapse}}" data-bs-parent="#sidebar">
 						  @php 
 						    echo $html;
 						  @endphp

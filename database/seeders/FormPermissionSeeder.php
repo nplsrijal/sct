@@ -16,7 +16,7 @@ class FormPermissionSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('form_permission')->insert(
+        $data=[ 
             [
             'formname' => 'User Group',
              'slug'=>'user-group',
@@ -25,20 +25,61 @@ class FormPermissionSeeder extends Seeder
              'isedit'=>'Y',
              'isdelete'=>'Y',
              'usertypeid'=>'1'
-            ]
-        );
-
-        DB::table('form_permission')->insert(
+            ],
             [
-            'formname' => 'Users',
-             'slug'=>'users',
-             'isinsert'=>'Y',
-             'isupdate'=>'Y',
-             'isedit'=>'Y',
-             'isdelete'=>'Y',
-             'usertypeid'=>'1'
+                'formname' => 'Users',
+                 'slug'=>'users',
+                 'isinsert'=>'Y',
+                 'isupdate'=>'Y',
+                 'isedit'=>'Y',
+                 'isdelete'=>'Y',
+                 'usertypeid'=>'1'
+            ],
+            [
+                'formname' => 'Request Mobile Number',
+                 'slug'=>'request-mobile-number',
+                 'isinsert'=>'Y',
+                 'isupdate'=>'Y',
+                 'isedit'=>'Y',
+                 'isdelete'=>'Y',
+                 'usertypeid'=>'1'
             ]
-        );
+            ,
+            [
+                'formname' => 'Request Card Activation & Green Pin',
+                 'slug'=>'request-card-activation',
+                 'isinsert'=>'Y',
+                 'isupdate'=>'Y',
+                 'isedit'=>'Y',
+                 'isdelete'=>'Y',
+                 'usertypeid'=>'1'
+            ]
+            ,
+            [
+                'formname' => 'Account Update',
+                 'slug'=>'account-update',
+                 'isinsert'=>'Y',
+                 'isupdate'=>'Y',
+                 'isedit'=>'Y',
+                 'isdelete'=>'Y',
+                 'usertypeid'=>'1'
+            ]
+            ,
+            [
+                'formname' => 'Card Status Update',
+                 'slug'=>'card-status-update',
+                 'isinsert'=>'Y',
+                 'isupdate'=>'Y',
+                 'isedit'=>'Y',
+                 'isdelete'=>'Y',
+                 'usertypeid'=>'1'
+            ]
+        ];
+
+        foreach ($data as $item) {
+            DB::table('form_permission')->insert($item);
+        }
+    
 
         
 
