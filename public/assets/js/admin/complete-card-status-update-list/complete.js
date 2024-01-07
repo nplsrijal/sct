@@ -13,7 +13,7 @@ function getData()
             { "data": "bin" },
             { "data": "card_number" },
             { "data": "request_type" },
-            { "data": "submitted_by" },
+            { "data": "created_by_name" },
             { "data": "submitted_date" },
             { "data": "status" },
             { "data": "action" },

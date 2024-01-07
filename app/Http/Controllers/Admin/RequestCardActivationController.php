@@ -26,7 +26,10 @@ class RequestCardActivationController extends BaseController
         //check button access
         $access=checkAccessPrivileges('request-card-activation');
         if ($request->ajax()) {
-            $data = Green_pin_activate::select('*')->where('isbulk','N')->orderBy('id', 'asc');
+            $data = Green_pin_activate::join('users', 'green_pin_activates.created_by', '=', 'users.id')
+            ->where('isbulk','N')->orderBy('id', 'asc')
+            ->get(['green_pin_activates.*','users.fname','users.lname']);
+
             return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function($row) use($access){
@@ -44,6 +47,9 @@ class RequestCardActivationController extends BaseController
                      }
        
                     return $btn;
+                    })
+                    ->addColumn('created_by_name', function($row) {
+                        return $row->fname.' '.$row->lname;
                     })
             ->rawColumns(['action'])
             ->make(true);

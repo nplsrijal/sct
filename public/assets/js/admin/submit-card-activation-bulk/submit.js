@@ -8,12 +8,12 @@ function getData()
     $('#datatables-reponsive').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "submit-card-activation-request-bulk",
+        ajax: "submit-card-activation-bulk",
         columns: [
             { "data": "bin" },
             { "data": "branch" },
             { "data": "card_number" },
-            { "data": "submitted_by" },
+            { "data": "created_by_name" },
             { "data": "submitted_date" },
             { "data": "status" },
             { "data": "action" },

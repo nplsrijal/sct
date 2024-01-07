@@ -1,6 +1,7 @@
 @extends('admin.layout.main')
 @section('content')
 
+
 <main class="content">
 				<div class="container-fluid p-0">
 
@@ -17,6 +18,7 @@
 
 										<a href="javascript:void(0)" style="float:right" id="addData"><i class="fas fa-plus"></i> Add New </a>
 									@endif
+									
 
 									</h6>
 									

@@ -25,7 +25,10 @@ class SubmitCardStatusUpdateController extends BaseController
     {
         
         if ($request->ajax()) {
-            $data = Card_status_update::select('*')->where('status','P')->where('isbulk','N')->orderBy('id', 'asc');
+            $data = Card_status_update::join('users', 'card_status_updates.created_by', '=', 'users.id')
+            ->where('status','P')
+            ->where('isbulk','N')->orderBy('id', 'asc')
+            ->get(['card_status_updates.*','users.fname','users.lname']);
             return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function($row){
@@ -39,6 +42,9 @@ class SubmitCardStatusUpdateController extends BaseController
                      
        
                     return $btn;
+                    })
+                    ->addColumn('created_by_name', function($row) {
+                        return $row->fname.' '.$row->lname;
                     })
             ->rawColumns(['action'])
             ->make(true);
@@ -85,7 +91,10 @@ class SubmitCardStatusUpdateController extends BaseController
     {
         if ($request->ajax())
         {
-            $data = Card_status_update::select('*')->where('status','S')->orderBy('id', 'asc');
+            $data = Card_status_update::join('users', 'card_status_updates.created_by', '=', 'users.id')
+            ->where('status','S')
+            ->orderBy('id', 'asc')
+            ->get(['card_status_updates.*','users.fname','users.lname']);
             return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function($row){
@@ -94,6 +103,9 @@ class SubmitCardStatusUpdateController extends BaseController
                      
        
                     return $btn;
+                    })
+                    ->addColumn('created_by_name', function($row) {
+                        return $row->fname.' '.$row->lname;
                     })
             ->rawColumns(['action'])
             ->make(true);
@@ -108,7 +120,10 @@ class SubmitCardStatusUpdateController extends BaseController
     {
         if ($request->ajax())
         {
-            $data = Card_status_update::select('*')->where('status','S')->orderBy('id', 'asc');
+            $data = Card_status_update::join('users', 'card_status_updates.created_by', '=', 'users.id')
+            ->where('status','S')
+            ->orderBy('id', 'asc')
+            ->get(['card_status_updates.*','users.fname','users.lname']);
             return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function($row){
@@ -117,6 +132,9 @@ class SubmitCardStatusUpdateController extends BaseController
                      
        
                     return $btn;
+                    })
+                    ->addColumn('created_by_name', function($row) {
+                        return $row->fname.' '.$row->lname;
                     })
             ->rawColumns(['action'])
             ->make(true);

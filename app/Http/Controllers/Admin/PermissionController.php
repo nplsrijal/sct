@@ -34,7 +34,7 @@ class PermissionController extends BaseController
          }
          else
          {
-            $menu = Menu::all()->where('parentmoduleid',0);
+            $menu = Menu::where('parentmoduleid',0)->get();
             $usertype = Usertype::all();
             $permission=Permission::all();
             $allowed=[];
@@ -175,7 +175,7 @@ class PermissionController extends BaseController
         }
         else
         {
-            $menu = Menu::all()->where('parentmoduleid',$request->menuid);
+            $menu = Menu::where('parentmoduleid',$request->menuid)->get();
             $usertype = Usertype::all();
             $permission=Permission::all();
             $allowed=[];
@@ -216,7 +216,7 @@ class PermissionController extends BaseController
         }
         else
         {
-            $permission = FormPermission::all()->where('usertypeid',$request->usergroupid);
+            $permission = FormPermission::where('usertypeid',$request->usergroupid)->get();
             $formList=FormPermission::distinct()->pluck('formname');
            
             $allowed=[];

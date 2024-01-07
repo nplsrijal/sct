@@ -16,7 +16,7 @@ function getData()
             { "data": "mobile_number" },
             { "data": "customer_name" },
             { "data": "email" },
-            { "data": "submitted_by" },
+            { "data": "created_by_name" },
             { "data": "submitted_date" },
             { "data": "status" },
             { "data": "action" },

@@ -26,7 +26,10 @@ class SubmitMobileNumberBulkController extends BaseController
     {
         
         if ($request->ajax()) {
-            $data = Mobile_update::select('*')->where('status','P')->where('isbulk','Y')->orderBy('id', 'asc');
+            $data = Mobile_update::join('users', 'mobile_updates.created_by', '=', 'users.id')
+            ->where('status','P')->where('isbulk','Y')->orderBy('id', 'asc')
+            ->get(['mobile_updates.*','users.fname','users.lname']);
+
             return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function($row){
@@ -37,6 +40,9 @@ class SubmitMobileNumberBulkController extends BaseController
                      
        
                     return $btn;
+                    })
+                    ->addColumn('created_by_name', function($row) {
+                        return $row->fname.' '.$row->lname;
                     })
             ->rawColumns(['action'])
             ->make(true);

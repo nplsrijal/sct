@@ -40,7 +40,7 @@ class MenuController extends BaseController
          }
          else
          {
-            $menu = Menu::all()->where('parentmoduleid',0);
+            $menu = Menu::where('parentmoduleid',0)->get();
             $title='Menu List';
             $form_title='Add Menu';
             $folder=$this->folder;

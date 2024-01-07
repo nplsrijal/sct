@@ -8,68 +8,74 @@
 
 
 // });
+use App\Http\Controllers\Admin\SubmitMobileNumberController;
+use App\Http\Controllers\Admin\SubmitCardActivationController;
+use App\Http\Controllers\Admin\SubmitAccountUpdateController;
+use App\Http\Controllers\Admin\SubmitCardStatusUpdateController;
+
 
 Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], function() {
 
-
-   Route::get('logout', 'LoginController@logout');
-   Route::resource('login', 'LoginController');
+   Route::get('logout', [LoginController::class, 'logout']);
+   Route::resource('login',LoginController::class);
 
 
      Route::group(['middleware' => 'admin'], function(){
-         Route::resource('dashboard', 'DashboardController');
+         Route::resource('dashboard', DashboardController::class);
 
-         Route::resource('usertype', 'UsertypeController');
+         Route::resource('usertype', UsertypeController::class);
 
-         Route::resource('menu', 'MenuController');
+         Route::resource('menu', MenuController::class);
 
-         Route::post('permission/getSubmenuData', 'PermissionController@SubmenuData');
-         Route::post('permission/getUsergroupWiseFormMenuData', 'PermissionController@UsergroupWiseFormMenuData');
-         Route::post('permission/setformpermission', 'PermissionController@setformpermission');
-         Route::get('permission/form', 'PermissionController@formPermission');
-         Route::resource('permission', 'PermissionController');
+         Route::post('permission/getSubmenuData', [PermissionController::class,'SubmenuData']);
+         Route::post('permission/getUsergroupWiseFormMenuData', [PermissionControlle::class,'UsergroupWiseFormMenuData']);
+         Route::post('permission/setformpermission', [PermissionController::class,'setformpermission']);
+         Route::get('permission/form', [PermissionController::class,'formPermission']);
+         Route::resource('permission', PermissionController::class);
 
-         Route::get('changepassword','UserController@changepassword');
-         Route::post('user/submitnewpassword','UserController@submitnewpassword');
-         Route::resource('user', 'UserController');
+         Route::get('changepassword',[UserController::class,'changepassword']);
+         Route::post('user/submitnewpassword',[UserController::class,'submitnewpassword']);
+         Route::resource('user', UserController::class);
 
-         Route::resource('request-mobilenumber', 'RequestMobileNumberController');
-         Route::get('submit-mobilenumber-list', 'SubmitMobileNumberController@getSubmittedList');
-         Route::get('complete-mobilenumber-list', 'SubmitMobileNumberController@getCompletedList');
-         Route::resource('submit-mobilenumber-request', 'SubmitMobileNumberController');
-         Route::resource('request-mobilenumber-bulk', 'RequestMobileNumberBulkController');
-         Route::post('submit-mobilenumber-request-bulk/updatestatus', 'SubmitMobileNumberBulkController@updateStatus');
-         Route::resource('submit-mobilenumber-request-bulk', 'SubmitMobileNumberBulkController');
+         Route::resource('request-mobilenumber', RequestMobileNumberController::class);
+         Route::get('submit-mobilenumber-list', [SubmitMobileNumberController::class,'getSubmittedList']);
+         Route::get('complete-mobilenumber-list', [SubmitMobileNumberController::class,'getCompletedList']);
+         Route::resource('submit-mobilenumber-request', SubmitMobileNumberController::class);
+         Route::resource('request-mobilenumber-bulk', RequestMobileNumberBulkController::class);
+         Route::post('submit-mobilenumber-request-bulk/updatestatus', [SubmitMobileNumberBulkController::class,'updateStatus']);
+         Route::resource('submit-mobilenumber-request-bulk', SubmitMobileNumberBulkController::class);
          
-         Route::resource('request-card-activation', 'RequestCardActivationController');
-         Route::get('submit-card-activation-list', 'SubmitCardActivationController@getSubmittedList');
-         Route::get('complete-card-activation-list', 'SubmitCardActivationController@getCompletedList');
-         Route::resource('submit-card-activation-request', 'SubmitCardActivationController');
-         Route::resource('request-card-activation-bulk', 'RequestCardActivationBulkController');
-         Route::post('submit-card-activation-bulk/updatestatus', 'SubmitCardActivationBulkController@updateStatus');
-         Route::resource('submit-card-activation-bulk', 'SubmitCardActivationBulkController');
+         Route::resource('request-card-activation', RequestCardActivationController::class);
+         Route::get('submit-card-activation-list', [SubmitCardActivationController::class,'getSubmittedList']);
+         Route::get('complete-card-activation-list', [SubmitCardActivationController::class,'getCompletedList']);
+         Route::resource('submit-card-activation-request', SubmitCardActivationController::class);
+         Route::resource('request-card-activation-bulk', RequestCardActivationBulkController::class);
+         Route::post('submit-card-activation-bulk/updatestatus', [SubmitCardActivationBulkController::class,'updateStatus']);
+         Route::resource('submit-card-activation-bulk', SubmitCardActivationBulkController::class);
 
-         Route::resource('account-update', 'AccountUpdateController');
-         Route::get('submit-account-update-list', 'SubmitAccountUpdateController@getSubmittedList');
-         Route::get('complete-account-update-list', 'SubmitAccountUpdateController@getCompletedList');
-         Route::resource('submit-account-update', 'SubmitAccountUpdateController');
-         Route::resource('account-update-bulk', 'AccountUpdateBulkController');
-         Route::post('submit-account-update-bulk/updatestatus', 'SubmitAccountUpdateBulkController@updateStatus');
-         Route::resource('submit-account-update-bulk', 'SubmitAccountUpdateBulkController');
+         Route::resource('account-update', AccountUpdateController::class);
+         Route::get('submit-account-update-list', [SubmitAccountUpdateController::class,'getSubmittedList']);
+         Route::get('complete-account-update-list', [SubmitAccountUpdateController::class,'getCompletedList']);
+         Route::resource('submit-account-update', SubmitAccountUpdateController::class);
+         Route::resource('account-update-bulk', AccountUpdateBulkController::class);
+         Route::post('submit-account-update-bulk/updatestatus', [SubmitAccountUpdateBulkController::class,'updateStatus']);
+         Route::resource('submit-account-update-bulk', SubmitAccountUpdateBulkController::class);
 
-         Route::resource('card-status-update', 'CardStatusUpdateController');
-         Route::get('submit-card-status-update-list', 'SubmitCardStatusUpdateController@getSubmittedList');
-         Route::get('complete-card-status-update-list', 'SubmitCardStatusUpdateController@getCompletedList');
-         Route::resource('submit-card-status-update', 'SubmitCardStatusUpdateController');
-         Route::resource('card-status-update-bulk', 'CardStatusUpdateBulkController');
-         Route::post('submit-card-status-update-bulk/updatestatus', 'SubmitCardStatusUpdateBulkController@updateStatus');
-         Route::resource('submit-card-status-update-bulk', 'SubmitCardStatusUpdateBulkController');
+         Route::resource('card-status-update', CardStatusUpdateController::class);
+         Route::get('submit-card-status-update-list', [SubmitCardStatusUpdateController::class,'getSubmittedList']);
+         Route::get('complete-card-status-update-list', [SubmitCardStatusUpdateController::class,'getCompletedList']);
+         Route::resource('submit-card-status-update', SubmitCardStatusUpdateController::class);
+         Route::resource('card-status-update-bulk', CardStatusUpdateBulkController::class);
+         Route::post('submit-card-status-update-bulk/updatestatus', [SubmitCardStatusUpdateBulkController::class,'updateStatus']);
+         Route::resource('submit-card-status-update-bulk', SubmitCardStatusUpdateBulkController::class);
+         Route::resource('register-upi-bin', RegisterUpiBinController::class);
 
 
 
 
        
      });
- });
+    });
+ 
 
 
