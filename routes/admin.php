@@ -1,20 +1,31 @@
 <?php
-// Route::group([
-//     'namespace'  => 'App\Http\Controllers\Admin',
-//     'prefix'     => 'admin',
-//    'middleware' => ['auth'],
-// ], function () {
-//      Route::resource('login', 'LoginController')->withoutMiddleware(['auth']);
-
-
-// });
 use App\Http\Controllers\Admin\SubmitMobileNumberController;
 use App\Http\Controllers\Admin\SubmitCardActivationController;
 use App\Http\Controllers\Admin\SubmitAccountUpdateController;
 use App\Http\Controllers\Admin\SubmitCardStatusUpdateController;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UsertypeController;
+use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\RequestMobileNumberController;
+use App\Http\Controllers\Admin\RequestMobileNumberBulkController;
+use App\Http\Controllers\Admin\SubmitMobileNumberBulkController;
+use App\Http\Controllers\Admin\RequestCardActivationController;
+use App\Http\Controllers\Admin\RequestCardActivationBulkController;
+use App\Http\Controllers\Admin\SubmitCardActivationBulkController;
+use App\Http\Controllers\Admin\AccountUpdateController;
+use App\Http\Controllers\Admin\AccountUpdateBulkController;
+use App\Http\Controllers\Admin\SubmitAccountUpdateBulkController;
+use App\Http\Controllers\Admin\CardStatusUpdateController;
+use App\Http\Controllers\Admin\CardStatusUpdateBulkController;
+use App\Http\Controllers\Admin\SubmitCardStatusUpdateBulkController;
+use App\Http\Controllers\Admin\RegisterUpiBinController;
 
 
-Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], function() {
+
+Route::group(['prefix' => 'admin'], function() {
 
    Route::get('logout', [LoginController::class, 'logout']);
    Route::resource('login',LoginController::class);
@@ -28,7 +39,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'],
          Route::resource('menu', MenuController::class);
 
          Route::post('permission/getSubmenuData', [PermissionController::class,'SubmenuData']);
-         Route::post('permission/getUsergroupWiseFormMenuData', [PermissionControlle::class,'UsergroupWiseFormMenuData']);
+         Route::post('permission/getUsergroupWiseFormMenuData', [PermissionController::class,'UsergroupWiseFormMenuData']);
          Route::post('permission/setformpermission', [PermissionController::class,'setformpermission']);
          Route::get('permission/form', [PermissionController::class,'formPermission']);
          Route::resource('permission', PermissionController::class);
