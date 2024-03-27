@@ -8,7 +8,7 @@
     -->
 </head>
 <body>
-    <p>{{ $content['body'] }}</p>
+    <p>{{ $data['message'] }}</p>
     <p>Some more text</p>
 </body>
 </html>
