@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\CardStatusUpdateController;
 use App\Http\Controllers\Admin\CardStatusUpdateBulkController;
 use App\Http\Controllers\Admin\SubmitCardStatusUpdateBulkController;
 use App\Http\Controllers\Admin\RegisterUpiBinController;
+use App\Http\Controllers\Admin\SendMailController;
 
 
 
@@ -80,6 +81,7 @@ Route::group(['prefix' => 'admin'], function() {
          Route::post('submit-card-status-update-bulk/updatestatus', [SubmitCardStatusUpdateBulkController::class,'updateStatus']);
          Route::resource('submit-card-status-update-bulk', SubmitCardStatusUpdateBulkController::class);
          Route::resource('register-upi-bin', RegisterUpiBinController::class);
+         Route::get('/send-mail', [SendMailController::class, 'index']);
 
 
 
